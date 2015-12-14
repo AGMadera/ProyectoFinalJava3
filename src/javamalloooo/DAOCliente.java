@@ -30,24 +30,33 @@ public class DAOCliente {
         transaction.commit();
         session.close();
     }
-    
+    //Guardar
     public void guardar(Cliente reservacion)throws Exception{
         session.save(reservacion);
         cerrarTodo();
     }
-
+    //Buscar Todos
     ArrayList<Cliente> buscarTodos() throws Exception{
-  ArrayList<Cliente>clientes=  (ArrayList<Cliente>) session.createCriteria(Cliente.class).list();
-  cerrarTodo();
-  
+    ArrayList<Cliente>clientes=  (ArrayList<Cliente>) session.createCriteria(Cliente.class).list();
+    cerrarTodo();
     return clientes;
+    }
+    //Buscar por ID
+    public Cliente buscarPorId(Integer id)throws Exception{
+    Cliente c=(Cliente)session.createCriteria(Cliente.class).add(Restrictions.idEq(id)).uniqueResult();
+            return c;
     }
     
     Cliente actualizar(Cliente c)throws Exception{
-        
-         c=(Cliente) session.createCriteria(Cliente.class).add(Restrictions.idEq(c.getIdCliente())).uniqueResult();
+        c=(Cliente) session.createCriteria(Cliente.class).add(Restrictions.idEq(c.getIdCliente())).uniqueResult();
          
          return c;
+    }
+    
+    public void borrar(Integer id)throws Exception{
+    Cliente c=new Cliente();
+    c.setIdCliente(id);
+    session.delete(c);
     }
     
 }   

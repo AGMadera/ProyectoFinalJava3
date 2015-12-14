@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author Campitos Ley <campitos-ley.com>
  */
 @Entity
-@Table(name = "CLIENTE")
+@Table(name = "CLIENTE2")
 public class Cliente {
     
     private static final long serialVersionUID = 1L;
